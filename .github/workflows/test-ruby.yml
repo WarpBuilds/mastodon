@@ -4,7 +4,7 @@ on:
   merge_group:
   push:
     branches:
-      - 'main'
+      # - 'main'
       - 'stable-*'
   pull_request:
 
