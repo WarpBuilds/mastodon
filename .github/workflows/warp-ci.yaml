@@ -5,14 +5,7 @@ on:
 
 jobs:
   build:
-    strategy:
-      matrix:
-        runner:
-          - gha-ubuntu-latest-x64-4x
-          - warp-ubuntu-latest-x64-4x
-
-    runs-on: ${{ matrix.runner }}
-    name: Build (${{ matrix.runner }})
+    runs-on: warp-ubuntu-latest-x64-4x
     steps:
       - uses: actions/checkout@v4
       - run: |
