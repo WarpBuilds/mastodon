@@ -11,6 +11,6 @@ jobs:
       - run: |
           export DOCKER_HOST=${{ secrets.WARPDEV_DOCKER_HOST }}
           docker build -t mastodon . \
-            --builld-arg MASTODON_VERSION_PRERELEASE=warpbench \
-            --builld-arg MASTODON_VERSION_METADATA=warpbench \
-            --builld-arg SOURCE_COMMIT=${{ github.sha }}
+            --build-arg MASTODON_VERSION_PRERELEASE=warpbench \
+            --build-arg MASTODON_VERSION_METADATA=warpbench \
+            --build-arg SOURCE_COMMIT=${{ github.sha }}
