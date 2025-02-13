@@ -1,9 +1,9 @@
 name: WarpBuild Docker Build
 
 on:
-  push: 
-    branches: 
-      - main
+  # push: 
+  #   branches: 
+  #     - main
   workflow_dispatch:
 
 jobs:
@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v4
       - run: |
           export DOCKER_HOST=${{ secrets.WARPDEV_DOCKER_HOST }}
-          docker build -t mastodon . \
+          docker buildx build -t mastodon . \
             --build-arg MASTODON_VERSION_PRERELEASE=warpbench \
             --build-arg MASTODON_VERSION_METADATA=warpbench \
             --build-arg SOURCE_COMMIT=${{ github.sha }}
