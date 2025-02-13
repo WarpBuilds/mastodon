@@ -15,7 +15,6 @@ jobs:
     name: Build (${{ matrix.runner }})
     steps:
       - uses: actions/checkout@v4
-      - run: git submodule update --init libs/*
       - run: |
           export DOCKER_HOST=${{ secrets.WARPDEV_DOCKER_HOST }}
           docker build -t mastodon . \
