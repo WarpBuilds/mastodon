@@ -1,0 +1,24 @@
+name: WarpBuild Docker Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        runner:
+          - gha-ubuntu-latest-x64-4x
+          - warp-ubuntu-latest-x64-4x
+
+    runs-on: ${{ matrix.runner }}
+    name: Build (${{ matrix.runner }})
+    steps:
+      - uses: actions/checkout@v4
+      - run: git submodule update --init libs/*
+      - run: |
+          export DOCKER_HOST=${{ secrets.WARPDEV_DOCKER_HOST }}
+          docker build -t mastodon . \
+            --builld-arg MASTODON_VERSION_PRERELEASE=warpbench \
+            --builld-arg MASTODON_VERSION_METADATA=warpbench \
+            --builld-arg SOURCE_COMMIT=${{ github.sha }}
